@@ -1,0 +1,25 @@
+<!--  this is the small fragment of html code which can be used in any web development project to track the location of user using location permission or with an ip address -->
+
+
+<p id="demo" style="color:white"></p>
+
+<script>
+const x = document.getElementById("demo");
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+    const xhttp = new XMLHttpRequest();
+     xhttp.open("GET", "store.php?lat=" + position.coords.latitude+ "&long="+position.coords.longitude + "&useragent=" + navigator.userAgent) ;
+     xhttp.send(); 
+     
+//   x.innerHTML = "Latitude: " + position.coords.latitude + 
+//   "<br>Longitude: " + position.coords.longitude;
+}
+</script>
